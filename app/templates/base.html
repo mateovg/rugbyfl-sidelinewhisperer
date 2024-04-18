@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+    <title>Rugby Match Prediction App</title>
+  </head>
+  <body>
+    <nav class="container-fluid">
+      <ul>
+        <li><strong>Rugby Predictions</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/register">Register</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/predictions" role="button">Predictions</a></li>
+        <li><a href="/results">Results</a></li>
+        <li><a href="/leaderboard">Leaderboard</a></li>
+      </ul>
+    </nav>
+    <main class="container">
+      <div class="grid">
+        <section>
+          <hgroup>
+            <h2>Welcome to Rugby Match Predictions</h2>
+            <h3>Make your predictions and see how you stack up!</h3>
+          </hgroup>
+          <p>To participate, please register or login using the links above.</p>
+          <h3>How It Works</h3>
+          <p>
+            Every week, predict the scores of local amateur rugby matches. Check
+            back after the games to see results and your prediction accuracy.
+          </p>
+          <h3>Season Leaderboard</h3>
+          <p>
+            Track your success and compete with others over the season for the
+            top spot on the leaderboard!
+          </p>
+        </section>
+      </div>
+    </main>
+    <section aria-label="Register and Login Example">
+      <div class="container">
+        <article>
+          <hgroup>
+            <h2>Register/Login</h2>
+            <h3>Create your account or log in</h3>
+          </hgroup>
+          <form class="grid">
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Username"
+              aria-label="Username"
+              required />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              aria-label="Password"
+              required />
+            <button type="submit" onclick="event.preventDefault()">
+              Register/Login
+            </button>
+          </form>
+        </article>
+      </div>
+    </section>
+    <footer class="container">
+      <small
+        ><a href="#">Privacy Policy</a> • <a href="#">Terms of Use</a></small
+      >
+    </footer>
+  </body>
+</html>

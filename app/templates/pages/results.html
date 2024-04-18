@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+    <title>Match Results</title>
+  </head>
+  <body>
+    <nav class="container-fluid">
+      <ul>
+        <li><strong>Rugby Predictions</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/register">Register</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/predictions" role="button">Predictions</a></li>
+        <li><a href="/results">Results</a></li>
+        <li><a href="/leaderboard">Leaderboard</a></li>
+      </ul>
+    </nav>
+    <main class="container">
+      <div class="grid">
+        <section>
+          <hgroup>
+            <h2>Weekly Match Results</h2>
+            <h3>See how your predictions compared!</h3>
+          </hgroup>
+          <!-- This section will dynamically list each match's result and user predictions -->
+          <table>
+            <thead>
+              <tr>
+                <th>Match</th>
+                <th>Your Prediction</th>
+                <th>Actual Score</th>
+                <th>Points Earned</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Flask template loop to populate table -->
+              {% for result in results %}
+              <tr>
+                <td>{{ result.match }}</td>
+                <td>{{ result.prediction }}</td>
+                <td>{{ result.actual }}</td>
+                <td>{{ result.points }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </main>
+    <footer class="container">
+      <small
+        ><a href="#">Privacy Policy</a> • <a href="#">Terms of Use</a></small
+      >
+    </footer>
+  </body>
+</html>
