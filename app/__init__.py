@@ -11,14 +11,16 @@ def create_app(config_class=Config):
 
     db.init_app(app)
 
+    # import blueprints
     from app.routes.home import home
     from app.routes.results import results
     from app.routes.predictions import predictions
     from app.routes.leaderboard import leaderboard
 
+    # register blueprints
     app.register_blueprint(home)
-    app.register_blueprint(results)
-    app.register_blueprint(predictions)
-    app.register_blueprint(leaderboard)
+    app.register_blueprint(results, url_prefix='/results')
+    app.register_blueprint(predictions, url_prefix='/predictions')
+    app.register_blueprint(leaderboard, url_prefix='/leaderboard')
 
     return app
