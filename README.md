@@ -5,10 +5,10 @@ Little project for fun and learning.
 # Rugby Predictor Web Application Project Plan
 
 ## 1. Project Setup
-- [ ] Create a new GitLab repository for your Rugby Predictor project
-- [ ] Set up a virtual environment for Python
-- [ ] Initialize a Flask project for the backend
-- [ ] Create a new React project for the frontend using Create React App or Vite
+- [x] Create a new GitLab repository for your Rugby Predictor project
+- [x] Set up a virtual environment for Python
+- [x] Initialize a Flask project for the backend
+- [x] Create a new React project for the frontend using Create React App or Vite
 
 ## 2. Backend Development (Flask)
 - [ ] Design and implement RESTful API structure
