@@ -1,24 +1,36 @@
-from flask import Flask, jsonify
-from flask_cors import CORS
+from flask import Flask, jsonify, request
+from data_service import DataService
 
 app = Flask(__name__)
-CORS(app)  # This allows your frontend to make requests to your backend
+data_service = DataService()
+
+# Basic error handling
 
 
-@app.route('/')
-def hello():
-    return jsonify({"message": "Welcome to the Florida Rugby Predictor!"})
+@app.errorhandler(404)
+def not_found(error):
+    return jsonify({"error": "Not found"}), 404
+
+
+@app.errorhandler(400)
+def bad_request(error):
+    return jsonify({"error": "Bad request"}), 400
+
+# Sample routes
 
 
 @app.route('/api/matches', methods=['GET'])
 def get_matches():
-    matches = [
-        {"id": 1, "home_team": "Miami RFC",
-            "away_team": "Orlando RFC", "date": "2023-07-01"},
-        {"id": 2, "home_team": "Jacksonville RFC",
-            "away_team": "Tampa Bay RFC", "date": "2023-07-08"}
-    ]
-    return jsonify(matches)
+    matches = data_service.get_all_matches()
+    return jsonify([match.__dict__ for match in matches])
+
+
+@app.route('/api/users/<int:user_id>/predictions', methods=['GET'])
+def get_user_predictions(user_id):
+    predictions = data_service.get_predictions_for_user(user_id)
+    return jsonify([prediction.__dict__ for prediction in predictions])
+
+# Add more routes here...
 
 
 if __name__ == '__main__':
