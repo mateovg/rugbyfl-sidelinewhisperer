@@ -30,7 +30,13 @@ def get_user_predictions(user_id):
     predictions = data_service.get_predictions_for_user(user_id)
     return jsonify([prediction.__dict__ for prediction in predictions])
 
-# Add more routes here...
+
+@app.route('/api/matches/<int:match_id>', methods=['POST'])
+def get_match(match_id):
+    match = data_service.get_match(match_id)
+    if not match:
+        return jsonify({"error": "Match not found"}), 404
+    return jsonify(match.__dict__)
 
 
 if __name__ == '__main__':
