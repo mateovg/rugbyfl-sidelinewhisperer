@@ -5,6 +5,13 @@ from services import data_service
 prediction_bp = Blueprint('prediction', __name__)
 
 
+# show all predictions
+@prediction_bp.route('/', methods=['GET'])
+def get_predictions():
+    predictions = data_service.get_predictions()
+    return jsonify([prediction.__dict__ for prediction in predictions])
+
+
 @prediction_bp.route('/api/predictions/create', methods=['POST'])
 def create_prediction():
     data = request.get_json()

@@ -55,8 +55,9 @@ class DataService:
         for prediction in predictions:
             user_id = prediction.user_id
             if user_id not in user_points:
-                user_points[user_id] = 0
+                user_points[user_id] = {'points': 0, 'predictions': []}
             match = self.get_match(prediction.match_id)
-            user_points += prediction.get_points(match)
+            user_points[user_id]['points'] += prediction.get_points(match)
+            user_points[user_id]['predictions'].append(prediction)
 
         return user_points

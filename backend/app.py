@@ -24,6 +24,13 @@ def not_found(error):
 def bad_request(error):
     return jsonify({"error": "Bad request"}), 400
 
+# home page
+
+
+@app.route('/', methods=['GET'])
+def index():
+    return jsonify({"message": "Welcome to the Soccer API"})
+
 
 if __name__ == '__main__':
     app.run(debug=True)
