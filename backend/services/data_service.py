@@ -4,6 +4,8 @@ from models.user import User
 from models.prediction import Prediction
 from data.dummy_data import matches, users, predictions
 
+from datetime import datetime
+
 
 class DataService:
     def __init__(self):
@@ -41,9 +43,27 @@ class DataService:
     def get_predictions_for_match(self, match_id: int) -> List[Prediction]:
         return [p for p in self._predictions if p.match_id == match_id]
 
-    def create_prediction(self, prediction: Prediction):
+    def create_prediction(self, user_id: int, match_id: int, home_score: int, away_score: int) -> Prediction:
+        prediction = Prediction(
+            id=0,
+            user_id=user_id,
+            match_id=match_id,
+            home_score=home_score,
+            away_score=away_score,
+            created_at=datetime.now(),
+            updated_at=datetime.now(),
+        )
         prediction.id = max([p.id for p in self._predictions], default=0) + 1
         self._predictions.append(prediction)
+        return prediction
+
+    def update_prediction(self, prediction_id: int, home_score: int, away_score: int) -> Optional[Prediction]:
+        prediction = self.get_prediction(prediction_id)
+        if not prediction:
+            return None
+        prediction.home_score = home_score
+        prediction.away_score = away_score
+        prediction.updated_at = datetime.now()
         return prediction
 
     def get_leaderboard(self):

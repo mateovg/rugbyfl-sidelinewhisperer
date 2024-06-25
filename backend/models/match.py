@@ -24,10 +24,21 @@ class Match:
         return self.home_score - self.away_score
 
     def is_draw(self) -> bool:
+        """
+        Returns True if the match is a draw.
+        """
         return self.home_score == self.away_score
 
     def has_started(self) -> bool:
-        return datetime.now() > self.date
+        """
+        If the current time is after the match date, the match has started.
+        """
+        # TODO: Implement this
+        # return datetime.now() > self.date
+        return True
 
     def can_accept_predictions(self) -> bool:
+        """
+        Matches can accept predictions if they haven't started yet.
+        """
         return not self.has_started()

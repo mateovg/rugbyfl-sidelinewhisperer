@@ -15,6 +15,11 @@ class Prediction:
 
     # Passing the match object instead of the match_id
     def get_points(self, match: Match) -> int:
+        """
+        Points are calculated based on the difference between the predicted
+        score and the actual score.
+        points = 100 - |predicted - actual| 
+        """
         # difference between result and actual
         result = match.get_winner()
         predicted = self.home_score - self.away_score
@@ -27,4 +32,7 @@ class Prediction:
         return points - diff
 
     def can_be_modified(self) -> bool:
+        """
+        
+        """
         return datetime.now() < self.match.date

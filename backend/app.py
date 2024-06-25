@@ -23,7 +23,6 @@ def not_found(error):
 @app.errorhandler(400)
 def bad_request(error):
     return jsonify({"error": "Bad request"}), 400
-
 # home page
 
 
