@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from routes.match_routes import match_bp
 from routes.user_routes import user_bp
 from routes.prediction_routes import prediction_bp

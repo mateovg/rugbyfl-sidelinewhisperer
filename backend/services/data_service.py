@@ -47,13 +47,16 @@ class DataService:
         return prediction
 
     def get_leaderboard(self):
+        """
+        Returns a dictionary of user IDs and their respective points.
+        """
         user_points = {}
-        for prediction in self._predictions:
+        predictions = self.get_predictions()
+        for prediction in predictions:
+            user_id = prediction.user_id
+            if user_id not in user_points:
+                user_points[user_id] = 0
             match = self.get_match(prediction.match_id)
-            if not match:
-                continue
-            if match.get_winner():
-                user = self.get_user(prediction.user_id)
-                user_points[user.id] = user_points.get(
-                    user.id, 0) + prediction.get_points(match)
+            user_points += prediction.get_points(match)
+
         return user_points
