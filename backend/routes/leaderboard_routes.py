@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
-from services.data_service import data_service
+from services import data_service
+
 
 leaderboard_bp = Blueprint('leaderboard', __name__)
 

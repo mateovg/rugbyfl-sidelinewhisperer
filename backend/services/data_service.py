@@ -45,3 +45,15 @@ class DataService:
         prediction.id = max([p.id for p in self._predictions], default=0) + 1
         self._predictions.append(prediction)
         return prediction
+
+    def get_leaderboard(self):
+        user_points = {}
+        for prediction in self._predictions:
+            match = self.get_match(prediction.match_id)
+            if not match:
+                continue
+            if match.get_winner():
+                user = self.get_user(prediction.user_id)
+                user_points[user.id] = user_points.get(
+                    user.id, 0) + prediction.get_points(match)
+        return user_points

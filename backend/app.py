@@ -1,10 +1,18 @@
-from flask import Flask, jsonify, request
-from data_service import DataService
+from flask import Flask
+from routes.match_routes import match_bp
+from routes.user_routes import user_bp
+from routes.prediction_routes import prediction_bp
+from routes.leaderboard_routes import leaderboard_bp
 
 app = Flask(__name__)
-data_service = DataService()
 
-# Basic error handling
+# Register the blueprints
+app.register_blueprint(match_bp, url_prefix='/api/matches')
+app.register_blueprint(user_bp, url_prefix='/api/users')
+app.register_blueprint(prediction_bp, url_prefix='/api/predictions')
+app.register_blueprint(leaderboard_bp, url_prefix='/api/leaderboard')
+
+# Error handlers
 
 
 @app.errorhandler(404)
@@ -15,28 +23,6 @@ def not_found(error):
 @app.errorhandler(400)
 def bad_request(error):
     return jsonify({"error": "Bad request"}), 400
-
-# Sample routes
-
-
-@app.route('/api/matches', methods=['GET'])
-def get_matches():
-    matches = data_service.get_all_matches()
-    return jsonify([match.__dict__ for match in matches])
-
-
-@app.route('/api/users/<int:user_id>/predictions', methods=['GET'])
-def get_user_predictions(user_id):
-    predictions = data_service.get_predictions_for_user(user_id)
-    return jsonify([prediction.__dict__ for prediction in predictions])
-
-
-@app.route('/api/matches/<int:match_id>', methods=['POST'])
-def get_match(match_id):
-    match = data_service.get_match(match_id)
-    if not match:
-        return jsonify({"error": "Match not found"}), 404
-    return jsonify(match.__dict__)
 
 
 if __name__ == '__main__':
