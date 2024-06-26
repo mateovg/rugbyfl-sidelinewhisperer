@@ -9,6 +9,11 @@ from datetime import datetime
 
 
 class DataService:
+    """
+    Replacement for an actual database. This class is used to store and retrieve data
+    in memory until we implement a database.
+    """
+
     def __init__(self):
         self._matches = matches
         self._users = users
@@ -81,4 +86,4 @@ class DataService:
             user_points[user_id]['points'] += prediction.get_points(match)
             user_points[user_id]['predictions'].append(prediction)
 
-        return user_points
+        return list(user_points.items())
