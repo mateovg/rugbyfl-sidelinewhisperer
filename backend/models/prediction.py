@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
-from backend.models.match import Match
+from models.match import Match
 
 
 @dataclass

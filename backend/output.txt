@@ -1,0 +1,9 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.5, pytest-8.2.2, pluggy-1.5.0
+rootdir: /Users/mateovelazquez/repos/rugbyfl-sidelinewhisperer
+collected 4 items
+
+tests/test_leadboard_routes.py .                                         [ 25%]
+tests/test_match_routes.py ...                                           [100%]
+
+============================== 4 passed in 0.02s ===============================

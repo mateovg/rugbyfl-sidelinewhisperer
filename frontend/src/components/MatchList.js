@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { getMatches } from "../services/api";
 
 const MatchList = () => {
   const [matches, setMatches] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/matches")
-      .then((response) => response.json())
-      .then((data) => setMatches(data));
+    getMatches().then((response) => setMatches(response.data));
   }, []);
 
   return (
@@ -15,7 +14,7 @@ const MatchList = () => {
       <ul>
         {matches.map((match) => (
           <li key={match.id}>
-            {match.home_team} vs {match.away_team} - {match.date}
+            {match.home_team_id} vs {match.away_team_id}
           </li>
         ))}
       </ul>

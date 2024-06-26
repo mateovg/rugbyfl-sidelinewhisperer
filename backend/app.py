@@ -1,18 +1,17 @@
 from flask import Flask, jsonify
-from backend.routes.match_routes import match_bp
-from backend.routes.user_routes import user_bp
-from backend.routes.prediction_routes import prediction_bp
-from backend.routes.leaderboard_routes import leaderboard_bp
-from backend.config import TestingConfig, Config
-
+from config import TestingConfig, Config
+from routes.leaderboard_routes import leaderboard_bp
+from routes.prediction_routes import prediction_bp
+from routes.user_routes import user_bp
+from routes.match_routes import match_bp
 
 def create_app(config_name='default'):
     app = Flask(__name__)
 
     if config_name == 'testing':
-        app.config.from_object(TestingConfig)
+        app.config.from_object('config.TestingConfig')
     else:
-        app.config.from_object(Config)
+        app.config.from_object('config.Config')
 
     # Register the blueprints
     app.register_blueprint(match_bp, url_prefix='/api/matches')

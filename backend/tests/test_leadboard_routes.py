@@ -4,3 +4,4 @@ def test_get_leaderboard(client):
     data = response.get_json()
     assert len(data) != 0
     pass
+
