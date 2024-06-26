@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
-from models.match import Match
+from backend.models.match import Match
 
 
 @dataclass
@@ -33,6 +33,6 @@ class Prediction:
 
     def can_be_modified(self) -> bool:
         """
-        
+
         """
         return datetime.now() < self.match.date

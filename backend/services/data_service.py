@@ -1,8 +1,9 @@
 from typing import List, Optional
-from models.match import Match
-from models.user import User
-from models.prediction import Prediction
-from data.dummy_data import matches, users, predictions
+from backend.models.match import Match
+from backend.models.user import User
+from backend.models.prediction import Prediction
+from backend.data.dummy_data import matches, users, predictions
+
 
 from datetime import datetime
 

@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
-from models.match import Match
-from models.user import User
-from models.prediction import Prediction
+from backend.models.match import Match
+from backend.models.user import User
+from backend.models.prediction import Prediction
 import random
 
 teams = [

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from services import data_service
+from backend.services import data_service
 
 match_bp = Blueprint('match', __name__)
 
