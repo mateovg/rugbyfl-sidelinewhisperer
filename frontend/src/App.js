@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import MatchList from "./components/MatchList";
 import Prediction from "./components/Prediction";
 import Leaderboard from "./components/Leaderboard";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   return (
@@ -22,11 +23,13 @@ function App() {
           </ul>
         </nav>
 
-        <Routes>
-          <Route path="/" element={<MatchList />} />
-          <Route path="/predict" element={<Prediction />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
-        </Routes>
+        <ErrorBoundary>
+          <Routes>
+            <Route path="/" element={<MatchList />} />
+            <Route path="/predict" element={<Prediction />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
+          </Routes>
+        </ErrorBoundary>
       </div>
     </Router>
   );

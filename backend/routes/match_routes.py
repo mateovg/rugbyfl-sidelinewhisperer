@@ -7,6 +7,7 @@ match_bp = Blueprint('match', __name__)
 @match_bp.route('/', methods=['GET'])
 def get_matches():
     matches = data_service.get_matches()
+    print(f"Sent matches: {len(matches)}")
     return jsonify([match.__dict__ for match in matches])
 
 

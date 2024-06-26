@@ -1,12 +1,15 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 from config import TestingConfig, Config
 from routes.leaderboard_routes import leaderboard_bp
 from routes.prediction_routes import prediction_bp
 from routes.user_routes import user_bp
 from routes.match_routes import match_bp
 
+
 def create_app(config_name='default'):
     app = Flask(__name__)
+    CORS(app)
 
     if config_name == 'testing':
         app.config.from_object('config.TestingConfig')
