@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { getLeaderboard } from "../services/api";
-import "./Leaderboard.css"; // We'll create this file for styling
 
 const Leaderboard = () => {
   const [leaderboard, setLeaderboard] = useState([]);
@@ -42,9 +41,9 @@ const Leaderboard = () => {
           </thead>
           <tbody>
             {leaderboard.map((entry, index) => (
-              <tr key={entry.id}>
+              <tr key={entry.user_id}>
                 <td>{index + 1}</td>
-                <td>{entry.username}</td>
+                <td>{entry.user_name}</td>
                 <td>{entry.points}</td>
               </tr>
             ))}

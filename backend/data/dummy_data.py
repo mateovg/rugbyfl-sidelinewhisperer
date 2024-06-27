@@ -8,50 +8,41 @@ from faker import Faker
 
 fake = Faker()
 
+NUMBER_OF_TEAMS = 20
+NUMBER_OF_MATCHE_WEEKS = 14
+NUMBER_OF_USERS = 100
+
 # Generate more realistic team data
-teams = [
-    Team(1, "Miami Hurricanes", "Miami", 1967),
-    Team(2, "Orlando Lions", "Orlando", 1972),
-    Team(3, "Jacksonville Jaguars", "Jacksonville", 1985),
-    Team(4, "Tampa Bay Titans", "Tampa", 1979),
-    Team(5, "Atlanta Phoenixes", "Atlanta", 1968),
-    Team(6, "Charlotte Eagles", "Charlotte", 1983),
-    Team(7, "Nashville Outlaws", "Nashville", 1990),
-    Team(8, "New Orleans Gators", "New Orleans", 1975),
-    Team(9, "Savannah Sharks", "Savannah", 1988),
-    Team(10, "Birmingham Bruisers", "Birmingham", 1981),
-    Team(11, "Raleigh Rattlers", "Raleigh", 1976),
-    Team(12, "Memphis Mavericks", "Memphis", 1987),
-    Team(13, "Tallahassee Thunderbolts", "Tallahassee", 1993),
-    Team(14, "Charleston Crusaders", "Charleston", 1980),
-    Team(15, "Pensacola Pirates", "Pensacola", 1989),
-    Team(16, "Baton Rouge Brawlers", "Baton Rouge", 1978)
-]
-
-
-# Generate more realistic match data
-matches = []
-start_date = datetime.now() - timedelta(days=60)
-for i in range(1, 121):  # Generate 120 matches
-    home_team = random.choice(teams)
-    away_team = random.choice([team for team in teams if team != home_team])
-    match_date = start_date + timedelta(days=i)
-    home_score = random.randint(0, 40)
-    away_score = random.randint(0, 40)
-
-    matches.append(Match(
+teams = []
+for i in range(1, NUMBER_OF_TEAMS + 1):
+    teams.append(Team(
         id=i,
-        home_team=home_team,
-        away_team=away_team,
-        date=match_date,
-        home_score=home_score,
-        away_score=away_score
+        name=fake.unique.city(),
+        city=fake.unique.city(),
+        founded=random.randint(1900, 2020)
     ))
+    # Generate more realistic match data
+matches = []
+# matches every Sat for 14 weeks
+start_date = datetime.now() - timedelta(days=7 * NUMBER_OF_MATCHE_WEEKS)
+for i in range(1, NUMBER_OF_MATCHE_WEEKS + 1):
+    for j in range(NUMBER_OF_TEAMS // 2):
+        home_team = teams[j]
+        away_team = teams[NUMBER_OF_TEAMS - j - 1]
+        date = start_date + timedelta(days=(i - 1) * 7)
+        matches.append(Match(
+            id=len(matches) + 1,
+            home_team=home_team,
+            away_team=away_team,
+            date=date,
+            home_score=random.randint(0, 40),
+            away_score=random.randint(0, 40)
+        ))
 
 # Create dummy users
 # Generate more realistic user data
 users = []
-for i in range(1, 101):  # Generate 100 users
+for i in range(1, NUMBER_OF_USERS + 1):  # Generate 100 users
     registration_date = datetime.now() - timedelta(days=random.randint(1, 365))
     users.append(User(
         id=i,
