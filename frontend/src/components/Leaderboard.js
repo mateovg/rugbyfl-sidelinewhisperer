@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getLeaderboard } from "../services/api";
+import "./Leaderboard.css"; // We'll create this file for styling
 
 const Leaderboard = () => {
   const [leaderboard, setLeaderboard] = useState([]);
@@ -9,14 +10,12 @@ const Leaderboard = () => {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        console.log("Fetching leaderboard...");
         const data = await getLeaderboard();
-        console.log("Leaderboard data:", data);
         setLeaderboard(data);
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching leaderboard:", error);
-        setError(error.message);
-      } finally {
+        setError("Failed to fetch leaderboard. Please try again later.");
         setIsLoading(false);
       }
     };
@@ -25,27 +24,27 @@ const Leaderboard = () => {
   }, []);
 
   if (isLoading) return <div>Loading leaderboard...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (error) return <div className="error">{error}</div>;
 
   return (
-    <div>
-      <h2>Current Leaderboard</h2>
+    <div className="leaderboard-container">
+      <h2>Leaderboard</h2>
       {leaderboard.length === 0 ? (
         <p>No leaderboard data available</p>
       ) : (
-        <table>
+        <table className="leaderboard-table">
           <thead>
             <tr>
               <th>Rank</th>
-              <th>User</th>
+              <th>Username</th>
               <th>Points</th>
             </tr>
           </thead>
           <tbody>
             {leaderboard.map((user, index) => (
-              <tr key={user.id || index}>
+              <tr key={user.id}>
                 <td>{index + 1}</td>
-                <td>{user.name || user.username || "Anonymous"}</td>
+                <td>{user.username}</td>
                 <td>{user.points}</td>
               </tr>
             ))}

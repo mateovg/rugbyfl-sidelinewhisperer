@@ -74,16 +74,24 @@ class DataService:
 
     def get_leaderboard(self):
         """
-        Returns a dictionary of user IDs and their respective points.
+        Returns a list of dictionaries, each containing user ID, username, and points.
         """
-        user_points = {}
-        predictions = self.get_predictions()
-        for prediction in predictions:
-            user_id = prediction.user_id
-            if user_id not in user_points:
-                user_points[user_id] = {'points': 0, 'predictions': []}
-            match = self.get_match(prediction.match_id)
-            user_points[user_id]['points'] += prediction.get_points(match)
-            user_points[user_id]['predictions'].append(prediction)
+        leaderboard = []
+        users = self.get_users()
+        for user in users:
+            try:
+                predictions = self.get_predictions_for_user(user.id)
+                points = sum(p.get_points(self.get_match(p.match_id))
+                             for p in predictions)
+                leaderboard.append({
+                    'id': user.id,
+                    'username': user.username,  # Assuming user object has a username attribute
+                    'points': points
+                })
+            except Exception as e:
+                print(f"Error calculating points for user {user.id}: {str(e)}")
+                # leaderboard.append({'id': user.id, 'username': user.username, 'points': 0})
 
-        return list(user_points.items())
+        # Sort the leaderboard by points in descending order
+        leaderboard.sort(key=lambda x: x['points'], reverse=True)
+        return leaderboard
