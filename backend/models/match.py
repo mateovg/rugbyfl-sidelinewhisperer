@@ -1,13 +1,14 @@
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
+from models.team import Team
 
 
 @dataclass
 class Match:
     id: int
-    home_team_id: int
-    away_team_id: int
+    home_team: Team
+    away_team: Team
     date: datetime
     home_score: Optional[int] = None
     away_score: Optional[int] = None

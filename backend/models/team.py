@@ -5,3 +5,5 @@ from dataclasses import dataclass
 class Team:
     id: int
     name: str
+    city: str
+    founded: int

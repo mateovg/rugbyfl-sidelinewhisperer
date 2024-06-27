@@ -29,14 +29,32 @@ const PredictionList = () => {
   return (
     <div>
       <h2>Current Predictions</h2>
-      <ul>
-        {predictions.map((prediction) => (
-          <li key={prediction.id}>
-            {prediction.user_id}: {prediction.home_score} vs{" "}
-            {prediction.away_score}
-          </li>
-        ))}
-      </ul>
+      {predictions.length === 0 ? (
+        <p>No prediction data available</p>
+      ) : (
+        <table className="prediction-table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Home Team</th>
+              <th>Away Team</th>
+              <th>Home Score</th>
+              <th>Away Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            {predictions.map((prediction, index) => (
+              <tr key={prediction.id}>
+                <td>{prediction.user.username}</td>
+                <td>{prediction.match.home_team.name}</td>
+                <td>{prediction.match.away_team.name}</td>
+                <td>{prediction.match.home_score}</td>
+                <td>{prediction.match.away_score}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };

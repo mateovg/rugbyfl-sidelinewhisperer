@@ -58,8 +58,8 @@ const MatchList = () => {
               }}>
               <div>Date: {formatDate(match.date)}</div>
               <div>
-                Home Team {match.home_team_id}: {match.home_score}
-                vs Away Team {match.away_team_id}: {match.away_score}
+                {match.home_team.name}: {match.home_score} vs{" "}
+                {match.away_team.name}: {match.away_score}
               </div>
             </li>
           ))}
