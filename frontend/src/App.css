@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+:root {
+  --primary-color: #1a73e8;
+  --secondary-color: #34a853;
+  --background-color: #f8f9fa;
+  --text-color: #202124;
+  --header-height: 60px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.app {
+  display: grid;
+  grid-template-rows: var(--header-height) 1fr;
+  min-height: 100vh;
+}
+
+.app-header {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  z-index: 1000;
+}
+
+.app-header h1 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.app-header nav ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.app-header nav ul li {
+  margin-left: 20px;
+}
+
+.app-header nav ul li a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.app-header nav ul li a:hover {
+  color: var(--primary-color);
+}
+
+.app-main {
+  padding: 20px;
+  margin-top: var(--header-height);
+  max-width: 1200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .app-header nav {
+    margin-top: 10px;
+  }
+
+  .app-header nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .app-header nav ul li {
+    margin: 5px 0;
+  }
+
+  .app-main {
+    margin-top: 120px;
+  }
+}

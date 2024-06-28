@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getMatches } from "../services/api";
+import { getMatches } from "../../services/api";
 
 const MatchList = () => {
   const [matches, setMatches] = useState([]);
