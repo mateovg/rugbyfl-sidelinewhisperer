@@ -7,4 +7,4 @@ class User:
     id: int
     username: str
     email: str
-    registration_date: datetime
+    registrationTime: datetime

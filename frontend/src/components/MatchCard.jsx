@@ -7,7 +7,7 @@ const MatchCard = (match) => {
         <Card.Title>Match</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{match.date}</Card.Subtitle>
         <Card.Text>
-          {match.home_team} vs {match.away_team}
+          {match.homeTeam.name} vs {match.awayTeam.name}
         </Card.Text>
       </Card.Body>
     </Card>

@@ -9,7 +9,7 @@ const api = axios.create({
 export const matchesService = {
   getMatches: async () => {
     try {
-      const response = await api.get("/matches");
+      const response = await api.get("/matches/");
       return response.data;
     } catch (error) {
       console.error("Error fetching matches:", error);

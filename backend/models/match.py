@@ -7,14 +7,14 @@ from models.team import Team
 @dataclass
 class Match:
     id: int
-    home_team: Team
-    away_team: Team
+    homeTeam: Team
+    awayTeam: Team
     date: datetime
-    home_score: Optional[int] = None
-    away_score: Optional[int] = None
+    homeScore: Optional[int] = None
+    awayScore: Optional[int] = None
 
     def __str__(self) -> str:
-        return f"{self.home_team_id} vs {self.away_team_id} on {self.date}"
+        return f"{self.homeTeam_id} vs {self.awayTeam_id} on {self.date}"
 
     def get_winner(self) -> Optional[int]:
         """
@@ -22,13 +22,13 @@ class Match:
         """
         if not self.has_started():
             return None
-        return self.home_score - self.away_score
+        return self.homeScore - self.awayScore
 
     def is_draw(self) -> bool:
         """
         Returns True if the match is a draw.
         """
-        return self.home_score == self.away_score
+        return self.homeScore == self.awayScore
 
     def has_started(self) -> bool:
         """

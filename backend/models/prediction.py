@@ -9,10 +9,10 @@ class Prediction:
     id: int
     user: User
     match: Match
-    home_score: int
-    away_score: int
-    created_at: datetime
-    updated_at: datetime
+    homeScore: int
+    awayScore: int
+    createdAt: datetime
+    updatedAt: datetime
     points: int = 0
 
     def get_points(self) -> int:
@@ -23,7 +23,7 @@ class Prediction:
         """
         # difference between result and actual
         result = self.match.get_winner()
-        predicted = self.home_score - self.away_score
+        predicted = self.homeScore - self.awayScore
         if result is None:
             return 0
 

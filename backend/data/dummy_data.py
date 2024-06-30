@@ -27,28 +27,28 @@ matches = []
 start_date = datetime.now() - timedelta(days=7 * NUMBER_OF_MATCHE_WEEKS)
 for i in range(1, NUMBER_OF_MATCHE_WEEKS + 1):
     for j in range(NUMBER_OF_TEAMS // 2):
-        home_team = teams[j]
-        away_team = teams[NUMBER_OF_TEAMS - j - 1]
+        homeTeam = teams[j]
+        awayTeam = teams[NUMBER_OF_TEAMS - j - 1]
         date = start_date + timedelta(days=(i - 1) * 7)
         matches.append(Match(
             id=len(matches) + 1,
-            home_team=home_team,
-            away_team=away_team,
+            homeTeam=homeTeam,
+            awayTeam=awayTeam,
             date=date,
-            home_score=random.randint(0, 40),
-            away_score=random.randint(0, 40)
+            homeScore=random.randint(0, 40),
+            awayScore=random.randint(0, 40)
         ))
 
 # Create dummy users
 # Generate more realistic user data
 users = []
 for i in range(1, NUMBER_OF_USERS + 1):  # Generate 100 users
-    registration_date = datetime.now() - timedelta(days=random.randint(1, 365))
+    registrationDate = datetime.now() - timedelta(days=random.randint(1, 365))
     users.append(User(
         id=i,
         username=fake.user_name(),
         email=fake.email(),
-        registration_date=registration_date
+        registrationTime=registrationDate
     ))
 
 # Create dummy predictions
@@ -65,8 +65,8 @@ for match in matches:
             id=len(predictions) + 1,
             user=user,
             match=match,
-            home_score=random.randint(0, 40),
-            away_score=random.randint(0, 40),
-            created_at=created_at,
-            updated_at=updated_at
+            homeScore=random.randint(0, 40),
+            awayScore=random.randint(0, 40),
+            createdAt=created_at,
+            updatedAt=updated_at
         ))
