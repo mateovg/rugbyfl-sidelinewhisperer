@@ -15,7 +15,6 @@ class Prediction:
     updated_at: datetime
     points: int = 0
 
-    # Passing the match object instead of the match_id
     def get_points(self) -> int:
         """
         Points are calculated based on the difference between the predicted

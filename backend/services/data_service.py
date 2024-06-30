@@ -20,6 +20,7 @@ class DataService:
         self._users: List[User] = users
         self._predictions: List[Prediction] = predictions
         self._teams: List[Team] = teams
+        self.update_prediction_points()
 
     # Match methods
     def get_matches(self) -> List[Match]:
@@ -97,3 +98,9 @@ class DataService:
         # Sort the leaderboard by points in descending order
         leaderboard.sort(key=lambda x: x['points'], reverse=True)
         return leaderboard
+
+    # Helper methods
+    def update_prediction_points(self) -> None:
+        for prediction in self._predictions:
+            prediction.points = prediction.get_points()
+        return None

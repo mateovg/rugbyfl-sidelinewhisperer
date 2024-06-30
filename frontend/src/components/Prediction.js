@@ -40,6 +40,7 @@ const PredictionList = () => {
               <th>Away Team</th>
               <th>Home Score</th>
               <th>Away Score</th>
+              <th>Points</th>
             </tr>
           </thead>
           <tbody>
@@ -48,8 +49,9 @@ const PredictionList = () => {
                 <td>{prediction.user.username}</td>
                 <td>{prediction.match.home_team.name}</td>
                 <td>{prediction.match.away_team.name}</td>
-                <td>{prediction.match.home_score}</td>
-                <td>{prediction.match.away_score}</td>
+                <td>{prediction.home_score}</td>
+                <td>{prediction.away_score}</td>
+                <td>{prediction.points}</td>
               </tr>
             ))}
           </tbody>
