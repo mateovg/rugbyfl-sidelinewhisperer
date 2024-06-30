@@ -33,11 +33,11 @@ export const predictionsService = {
       const response = await api.get("/predictions");
       return response.data;
     } catch (error) {
-      console.error("Error fetching predictions:", error);
+      console.error("Error fetching matches:", error);
       throw error;
     }
   },
-  getPrediction: async (predictionId) => {
+  getPreadiction: async (predictionId) => {
     try {
       const response = await api.get(`/prediction/${predictionId}`);
       return response.data;

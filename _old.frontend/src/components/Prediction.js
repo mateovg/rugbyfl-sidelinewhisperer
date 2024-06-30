@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getPredictions } from "../../services/api";
+import { getPredictions } from "../services/api";
 
 const PredictionList = () => {
   const [predictions, setPredictions] = useState([]);
