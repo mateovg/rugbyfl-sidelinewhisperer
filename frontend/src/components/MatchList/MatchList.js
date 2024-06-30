@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getMatches } from "../../services/api";
+import { PlusCircle } from "lucide-react";
 
 const MatchList = () => {
   const [matches, setMatches] = useState([]);
@@ -14,7 +15,7 @@ const MatchList = () => {
         console.log("Matches data:", data);
         setMatches(data);
       } catch (err) {
-        console.error("Error fetching macthes:", err);
+        console.error("Error fetching matches:", err);
         setError(err.message);
       } finally {
         setIsLoading(false);
@@ -23,20 +24,24 @@ const MatchList = () => {
     fetchMatches();
   }, []);
 
-  const formatDate = (dateString) => {
-    const options = {
-      weekday: "short",
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    };
-    try {
-      return new Date(dateString).toLocaleDateString(undefined, options);
-    } catch (error) {
-      console.error("Error formatting date: ", error);
-      return dateString;
-    }
+  const formatTime = (dateString) => {
+    return new Date(dateString).toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
   };
+
+  const formatDay = (dateString) => {
+    return new Date(dateString).toLocaleDateString([], { weekday: "short" });
+  };
+
+  // Placeholder predictions - you might want to fetch these from your API or calculate them
+  const getPredictions = () => [
+    { score: "1-0", percentage: 30 },
+    { score: "2-1", percentage: 25 },
+    { score: "0-0", percentage: 20 },
+    { score: "1-1", percentage: 15 },
+  ];
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
@@ -47,23 +52,61 @@ const MatchList = () => {
       {matches.length === 0 ? (
         <p>No upcoming matches</p>
       ) : (
-        <ul style={{ listStyleType: "none", padding: 0 }}>
-          {matches.map((match) => (
-            <li
-              key={match.id}
-              style={{
-                marginBottom: "20px",
-                border: "1px solid #ddd",
-                padding: "10px",
-              }}>
-              <div>Date: {formatDate(match.date)}</div>
+        matches.map((match) => (
+          <div key={match.id}>
+            <div>
+              <span>{`${formatDay(match.date)}, ${formatTime(
+                match.date
+              )}`}</span>
+            </div>
+
+            <div>
               <div>
-                {match.home_team.name}: {match.home_score} vs{" "}
-                {match.away_team.name}: {match.away_score}
+                <div>
+                  <span>
+                    {match.home_team.name.substring(0, 3).toUpperCase()}
+                  </span>
+                </div>
+                <span>{match.home_team.name}</span>
               </div>
-            </li>
-          ))}
-        </ul>
+              <div>
+                <div>{match.home_score !== null ? match.home_score : "-"}</div>
+                <div>{match.away_score !== null ? match.away_score : "-"}</div>
+              </div>
+              <div>
+                <span>{match.away_team.name}</span>
+                <div>
+                  <span>
+                    {match.away_team.name.substring(0, 3).toUpperCase()}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3>Popular predictions</h3>
+              <div>
+                {getPredictions().map((pred, index) => (
+                  <div key={index}>
+                    <div>{pred.score}</div>
+                    <div>{pred.percentage}%</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {[
+              "First team to score",
+              "First player to score",
+              "Play 2x booster",
+            ].map((text, index) => (
+              <div key={index}>
+                <span>{text}</span>
+                <PlusCircle size={20} />
+              </div>
+            ))}
+          </div>
+        ))
       )}
     </div>
   );
