@@ -1,12 +1,9 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
 import useApi from "./hooks/useApi";
 import { matchesService } from "./services/api";
-import MatchGrid from "./components/MatchGrid";
-import Header from "./components/Header";
+import AppNavbar from "./components/AppNavbar";
 import Footer from "./components/Footer";
+import { Container } from "react-bootstrap";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,10 +12,14 @@ function App() {
   console.table({ matches, loading, error });
 
   return (
-    <div>
-      <Header></Header>
+    <>
+      <AppNavbar></AppNavbar>
+      <Container>
+        {/* Main content goes here */}
+        <h1>Welcome to the Page!</h1>
+      </Container>
       <Footer></Footer>
-    </div>
+    </>
   );
 }
 
