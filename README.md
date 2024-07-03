@@ -11,8 +11,8 @@ Little project for fun and learning.
 - [x] Create a new React project for the frontend using Create React App or Vite
 
 ## 2. Backend Development (Flask)
-- [ ] Design and implement RESTful API structure
-- [ ] Create models for teams, players, matches, and predictions
+- [x] Design and implement RESTful API structure
+- [x] Create models for teams, players, matches, and predictions
 - [ ] Implement CRUD operations for all models
 - [ ] Add authentication using JWT tokens
 - [ ] Implement a web scraping module to gather rugby match data from local Florida sources
