@@ -1,37 +1,24 @@
-import React, { Fragment } from "react";
-
-interface Team {
-  id: number;
-  name: string;
-  city: string;
-  founded: number;
-}
-
-interface Match {
-  id: number;
-  homeTeam: Team;
-  awayTeam: Team;
-  date: string; // We'll use a string for now, but you might want to use a Date object
-  homeScore: number | null;
-  awayScore: number | null;
-}
-
-export interface MatchCardProps {
-  match: Match;
-}
+import Card from "react-bootstrap/Card";
 
 const MatchCard = ({ match }) => {
-  console.log(match);
-
   const { homeTeam, awayTeam, date, homeScore, awayScore } = match;
   const matchDate = new Date(date);
 
   return (
-    <div>
-      <h2>{homeTeam} vs {awayTeam}</h2>
-      <p>Data: {date}</p>
-    </div>
-  )
+    <Card>
+      <Card.Body>
+        <Card.Title>
+          {homeTeam.name} vs {awayTeam.name}
+        </Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">
+          {matchDate.toDateString()}
+        </Card.Subtitle>
+        <Card.Text>
+          {homeScore} - {awayScore}
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  );
 };
 
 export default MatchCard;

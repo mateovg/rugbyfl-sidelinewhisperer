@@ -19,9 +19,13 @@ const MatchCardGrid = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-3 md:grid-cols-2 gap-4">
+    // render a grid of MatchCard components, with the number of columns determined by the screen size
+    // add padding between the columns
+    <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 padding=10px">
       {matches.map((match) => (
-        <MatchCard key={match.id} match={match} />
+        <div className="col" key={match.id}>
+          <MatchCard match={match} />
+        </div>
       ))}
     </div>
   );
