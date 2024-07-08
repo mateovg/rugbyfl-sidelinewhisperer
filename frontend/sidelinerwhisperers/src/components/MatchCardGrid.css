@@ -1,0 +1,10 @@
+/* MatchGrid.css */
+.matchgrid {
+  text-align: center;
+  position: relative;
+  max-width: 1220px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  min-height: 500px;
+}

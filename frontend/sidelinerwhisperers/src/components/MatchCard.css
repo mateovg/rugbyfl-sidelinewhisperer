@@ -1,0 +1,86 @@
+.matchcard {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.date {
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.team {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.home-team {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.away-team {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.prediction-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.home-buttons {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.away-buttons {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.prediction-buttons button {
+  padding: 5px 10px;
+  font-size: 0.9em;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.score {
+  text-align: center;
+}
+
+.home-score {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.away-score {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.score input {
+  width: 60px;
+  text-align: center;
+  padding: 5px;
+  font-size: 1.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

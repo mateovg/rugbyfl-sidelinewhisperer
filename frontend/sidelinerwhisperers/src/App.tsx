@@ -6,7 +6,7 @@ import MatchCardGrid from "./components/MatchCardGrid";
 const App = () => {
   return (
     <>
-      <Navbar />;
+      <Navbar />
       <MatchCardGrid />
     </>
   );
