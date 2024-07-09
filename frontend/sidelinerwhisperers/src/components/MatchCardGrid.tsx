@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MatchCard from "./MatchCard";
 import { getMatches } from "../services/api";
+import { Match } from "../types";
 import "./MatchCardGrid.css";
 
 const MatchCardGrid = () => {
@@ -18,8 +19,6 @@ const MatchCardGrid = () => {
 
     fetchMatches();
   }, []);
-
-  console.table(matches);
 
   return (
     // render a grid of MatchCard components, with the number of columns determined by the screen size

@@ -2,9 +2,9 @@
 .matchgrid {
   text-align: center;
   position: relative;
-  max-width: 1220px;
-  display: flex;
+  /* max-width: 1220px; */
+  display: inline-grid;
   flex-wrap: wrap;
-  margin: auto;
-  min-height: 500px;
+  margin: auto auto;
+  min-height: 200px;
 }
