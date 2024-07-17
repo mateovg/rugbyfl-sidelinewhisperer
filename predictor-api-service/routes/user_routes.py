@@ -4,7 +4,7 @@ from services import data_service
 user_bp = Blueprint('user', __name__)
 
 
-@user_bp.route('/api/users/<int:user_id>/predictions', methods=['GET'])
-def get_user_predictions(user_id):
+@user_bp.route('/<int:user_id>', methods=['GET'])
+def get_user_predictions_by_id(user_id):
     predictions = data_service.get_predictions_for_user(user_id)
     return jsonify([prediction.__dict__ for prediction in predictions])
